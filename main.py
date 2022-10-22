@@ -15,8 +15,8 @@ arcade.set_background_color(arcade.color.CADMIUM_YELLOW)
 
 # Let's get rendering! We'll start with the graph lines and title.
 arcade.start_render()
-arcade.draw_line(75, 75, 75, 900, arcade.color.BLACK, 5)
-arcade.draw_line(75, 75, 1600, 75, arcade.color.BLACK, 5)
+arcade.draw_line(75, 75, 75, 900, arcade.color.BLACK, 3)
+arcade.draw_line(75, 75, 1600, 75, arcade.color.BLACK, 3)
 arcade.draw_text("Populations of The Largest Nations On Earth", 675, 875, arcade.color.BLACK, 15)
 
 # Now we need to define some global variables for the x-axis.
@@ -34,8 +34,8 @@ for line in allLines:
     splitNationData = line.split(',')
     currentLabel = arcade.Text(splitNationData[0], beginningX, 50, arcade.color.BLACK)
 
-    # Similar to xScale, this will be used to help properly scale our bars within the graph.
-    barScale = (int(splitNationData[1])-100000000)/1000000
+    # Similar to xScale, this will be used to help properly scale our bar height within the graph.
+    barScale = ((int(splitNationData[1])-100000000)/1700000)
 
     # Now we want to create the bars that exist within the graph.
     # An ifElse is used to properly define the colors of the graph based on whether our rate of change is pos or neg.
@@ -54,8 +54,9 @@ beginningY = 75
 
 for number in range(100, 1500, 100):
 
-    # The following two lines will draw our y-axis labels and then properly space them using the same logic as above.
+    # The following lines will draw our y-axis labels and lines, and then properly space them using similar logic.
     currentLabel = arcade.Text(f"{number}M", 5, beginningY, arcade.color.BLACK)
+    arcade.draw_line(75, beginningY, 1600, beginningY, arcade.color.BLACK)
     beginningY += yScale
     currentLabel.draw()
 
